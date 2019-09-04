@@ -1,0 +1,30 @@
+<h2> Panier </h2>
+<ul>
+	<% @cart.join_table_cart_items.each do |join| %>
+	<li><%= join.item.title %></li>
+
+
+	<strong>Ajouter le: <%= join.created_at%></strong>
+	<li >Titre: "<%= join.item.title %>"</li> 
+	<li>Description: "<%= join.item.description %>"</li> 
+	<li>Prix: "<%= join.item.price %> $ "</li> 
+	<li>Image_url :  "<%= join.item.image_url %>"</li>
+	<%= link_to "Enlever du panier", join,  method: :delete, data: {confirm: "Etes-vous sûr"}, class: "btn btn-danger" %>
+	<br>
+	<br>
+	<% end %>
+</ul>
+<br>
+<strong> prix total à payer: <%= @sum %> $</strong><br>
+<p ><%= link_to "Retour aux produits", root_path%></p>
+
+
+
+          <script
+            src="https://checkout.stripe.com/checkout.js"
+            class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+           
+            data-amount="<% @sum %>"
+            data-currency="EUR"
+            data-locale="auto"></script>

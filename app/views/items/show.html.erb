@@ -1,0 +1,8 @@
+<h1><%= @item.title %></h1>
+	     <p>Titre: "<%= @item.title %>"</p> 
+	     <p>Description: "<%= @item.description %>"</p> 
+	     <p>Prix: "<%= @item.price %> $ "</p> 
+	     <p>Image_url :  "<%= @item.image_url %>"</p>
+<%if user_signed_in?%>
+	    <button id='<%=@item.id%>' class="add">ajout a mon panier</button>
+<%end%>
